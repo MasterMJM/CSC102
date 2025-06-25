@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Author: [Your Name Here] -->
+    <!-- Title and basic metadata -->
+    <meta charset="UTF-8" />
+    <title>Strings Validation Demo</title>
+    <!-- Some simple CSS for style and background -->
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #00796b;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 8px;
+            margin: 8px;
+            width: 200px;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #004d40;
+        }
+        img {
+            width: 200px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main header for the page -->
+    <h1>Welcome to the Strings Validation Demo</h1>
+
+    <!-- First name input -->
+    <label for="firstName">First Name:</label><br/>
+    <input type="text" id="firstName" placeholder="Enter your first name" /><br/>
+
+    <!-- Last name input -->
+    <label for="lastName">Last Name:</label><br/>
+    <input type="text" id="lastName" placeholder="Enter your last name" /><br/>
+
+    <!-- Zip code input -->
+    <label for="zip">Zip Code:</label><br/>
+    <input type="text" id="zip" placeholder="Enter 5 digit zip code" /><br/><br/>
+
+    <!-- Button to check the inputs -->
+    <button onclick="checkInputs()">Check My Info</button>
+
+    <!-- Placeholder for output or errors -->
+    <div id="output" class="message"></div>
+
+    <!-- A fun image to enhance the page -->
+    <img src="unlock.jpg" alt="A fun image" />
+
+    <!-- JavaScript section to do all the validation -->
+    <script>
+        // Main function that validates the inputs
+        function checkInputs() {
+            // Get the user's first name
+            const firstName = document.getElementById('firstName').value.trim();
+            // Get the user's last name
+            const lastName = document.getElementById('lastName').value.trim();
+            // Get the zip code
+            const zip = document.getElementById('zip').value.trim();
+
+            // Combine the first and last names into one variable
+            const fullName = firstName + " " + lastName;
+
+            // Get the output div
+            const output = document.getElementById('output');
+
+            // Check if full name is too long
+            if (fullName.length > 20) {
+                output.innerHTML = "Error: Your full name cannot exceed 20 characters.";
+                return; // stop the program
+            }
+
+            // Check if the zip is exactly 5 digits using a regular expression
+            const zipPattern = /^[0-9]{5}$/;
+            if (!zipPattern.test(zip)) {
+                output.innerHTML = "Error: Zip code must be exactly 5 digits.";
+                return; // stop the program
+            }
+
+            // If we reach here, everything is valid — show a secret message
+            output.innerHTML = "Welcome, " + fullName + "! Here is your secret message: <br/>" +
+                               "<strong>You successfully passed validation — you rock! 🎉</strong>";
+        }
+    </script>
+</body>
+</html>

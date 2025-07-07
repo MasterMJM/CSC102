@@ -1,0 +1,107 @@
+<!-- 
+  Author: Michael Mosby
+  Description: HTML and JavaScript code to create a meme mover with Start and Stop buttons.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meme Mover</title>
+
+  <!-- Creative element: custom font and background color -->
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background-color: #f0f8ff;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #startBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #stopBtn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #meme {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 150px;
+      transition: top 0.3s, left 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Heading for the app -->
+  <h1>Meme Mover Machine</h1>
+
+  <!-- Create Start Button and bind to startMoving() function -->
+  <button id="startBtn" onclick="startMoving()">Start</button>
+
+  <!-- Create Stop Button and bind to stopMoving() function -->
+  <button id="stopBtn" onclick="stopMoving()" disabled>Stop</button>
+
+  <!-- Meme image that will move around the page -->
+  <img id="meme" src="meme.jpg" alt="Funny Meme">
+
+  <!-- JavaScript Section -->
+  <script>
+    // Set initial movement interval
+    let moveInterval;
+
+    // Function to start moving the image
+    function startMoving() {
+      // Disable Start button to prevent multiple presses
+      document.getElementById("startBtn").disabled = true;
+
+      // Enable Stop button
+      document.getElementById("stopBtn").disabled = false;
+
+      // Call move function every 500ms
+      moveInterval = setInterval(moveMeme, 500);
+    }
+
+    // Function to stop moving the image
+    function stopMoving() {
+      // Disable Stop button to prevent multiple presses
+      document.getElementById("stopBtn").disabled = true;
+
+      // Enable Start button again
+      document.getElementById("startBtn").disabled = false;
+
+      // Stop movement
+      clearInterval(moveInterval);
+    }
+
+    // Function that randomly moves the meme image around the screen
+    function moveMeme() {
+      // Get the meme image element
+      const meme = document.getElementById("meme");
+
+      // Generate random positions within window boundaries
+      const x = Math.floor(Math.random() * (window.innerWidth - 200));
+      const y = Math.floor(Math.random() * (window.innerHeight - 200));
+
+      // Set new position using inline styles
+      meme.style.left = x + "px";
+      meme.style.top = y + "px";
+    }
+  </script>
+</body>
+</html>

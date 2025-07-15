@@ -1,0 +1,135 @@
+<!-- 
+  Name: Michael Mosby
+  Description: Palindrome checker that allows repeated input using form and innerHTML
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Palindrome Checker</title>
+
+  <!-- Creative Styling: background color, font, and image -->
+  <style>
+    body {
+      background-color: #f0e6ff; /* light purple background */
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    h1 {
+      color: #4b0082;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    #image-box {
+      margin-top: 30px;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 10px;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+    }
+
+    input[type="submit"], button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      background-color: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #doneBtn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Title -->
+  <h1>Palindrome Word Checker</h1>
+
+  <!-- HTML Form for user input -->
+  <form id="wordForm">
+    <!-- Label for user -->
+    <label for="userWord">Enter a word or phrase:</label><br>
+    
+    <!-- Text input for user word -->
+    <input type="text" id="userWord" name="userWord" required><br>
+    
+    <!-- Submit button to check palindrome -->
+    <input type="submit" value="Check Word">
+  </form>
+
+  <!-- Button to finish input (controlled by JS) -->
+  <button id="doneBtn">I'm done!</button>
+
+  <!-- Area where result will be shown using innerHTML -->
+  <div id="result"></div>
+
+  <!-- JavaScript section -->
+  <script>
+    // Get form and DOM elements
+    const form = document.getElementById("wordForm");
+    const resultDiv = document.getElementById("result");
+    const doneBtn = document.getElementById("doneBtn");
+
+    // Create a flag to track if user wants to keep entering words
+    let keepGoing = true;
+
+    // Handle form submission (palindrome check)
+    form.onsubmit = function(event) {
+      // Prevent page reload
+      event.preventDefault();
+
+      // Get user input and clean it
+      let input = document.getElementById("userWord").value.trim().toLowerCase();
+      let cleaned = input.replace(/\s+/g, '');
+
+      // Reverse string to check palindrome
+      let reversed = cleaned.split('').reverse().join('');
+
+      // Show result with innerHTML
+      if (cleaned === reversed && cleaned !== '') {
+        resultDiv.innerHTML = `"${input}" is a <span style="color:green;">palindrome!</span>`;
+      } else {
+        resultDiv.innerHTML = `"${input}" is <span style="color:red;">not a palindrome</span>.`;
+      }
+
+      // Clear input for next word
+      document.getElementById("userWord").value = '';
+
+      // Show the Done button
+      doneBtn.style.display = "inline-block";
+    };
+
+    // Handle click on "Done" button
+    doneBtn.onclick = function() {
+      resultDiv.innerHTML += "<br><span style='color:blue;'>Thanks for using the Palindrome Checker!</span>";
+      
+      // Disable form and hide button
+      form.style.display = "none";
+      doneBtn.style.display = "none";
+    };
+  </script>
+</body>
+</html>

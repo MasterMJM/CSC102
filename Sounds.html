@@ -1,0 +1,74 @@
+<!--
+  Name: Michael Mosby
+  Description: A fun HTML demo with background sound, styling, and creative visuals
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sound & Style Demo</title>
+
+  <!-- Creative Styling: custom font, background color, centered layout -->
+  <style>
+    /* Set background and font styling */
+    body {
+      background-color: #d0f0f7; /* light blue background */
+      font-family: 'Trebuchet MS', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    /* Style the title */
+    h1 {
+      color: #005577;
+      font-size: 3em;
+    }
+
+    /* Style the play button */
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      background-color: #0099cc;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    /* Add a hover effect */
+    button:hover {
+      background-color: #0077aa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page title -->
+  <h1>Welcome to My Sound Page!</h1>
+
+  <!-- Button that will play sound when clicked -->
+  <button onclick="playSound()">Play Sound</button>
+
+  <!-- Audio element for sound -->
+  <!-- We preload it so it’s ready when user clicks -->
+  <audio id="memeSound" preload="auto">
+    <source src="jurassic-dinosaurs-sound-effects-372727.mp3" type="audio/mpeg">
+    <!-- Fallback message if browser doesn't support audio -->
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- JavaScript section -->
+  <script>
+    // Function that plays the audio when the button is clicked
+    function playSound() {
+      // Get the audio element by ID
+      const sound = document.getElementById("memeSound");
+
+      // Play the sound
+      sound.play();
+    }
+  </script>
+</body>
+</html>

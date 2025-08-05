@@ -1,0 +1,137 @@
+<!--
+  Name: Michael Mosby
+  Description: Demonstrates multiple programming concepts (if/else, loops, string manipulation, functions, classes)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Programming Concepts Demo</title>
+
+  <!-- Styling for creative look: background, font, layout -->
+  <style>
+    body {
+      background-color: #e6f2ff; /* light blue background */
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #004080;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+    }
+
+    input[type="submit"], button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3399ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #003366;
+    }
+
+    img {
+      width: 250px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page heading -->
+  <h1>Programming Concepts in Action</h1>
+
+  <!-- Input form for string -->
+  <form id="wordForm">
+    <!-- Ask user for a word -->
+    <label for="userWord">Enter a word to analyze:</label><br>
+    <input type="text" id="userWord" name="userWord" required><br>
+    <input type="submit" value="Analyze Word">
+  </form>
+
+  <!-- Result output -->
+  <div id="result"></div>
+
+  <!-- Creative element: meme image -->
+  <img src="https://i.imgur.com/OYF2C2Q.png" alt="Fun Image">
+
+  <!-- JavaScript logic starts here -->
+  <script>
+    // Class to represent a WordAnalyzer object
+    class WordAnalyzer {
+      constructor(word) {
+        this.original = word;
+        this.cleaned = word.toLowerCase().replace(/\s+/g, '');
+      }
+
+      // Method to check if the word is a palindrome
+      isPalindrome() {
+        const reversed = this.cleaned.split('').reverse().join('');
+        return this.cleaned === reversed;
+      }
+
+      // Method to count vowels in the word using loop
+      countVowels() {
+        let count = 0;
+        const vowels = "aeiou";
+        for (let i = 0; i < this.cleaned.length; i++) {
+          if (vowels.includes(this.cleaned[i])) {
+            count++;
+          }
+        }
+        return count;
+      }
+    }
+
+    // Function to handle form submission
+    function handleFormSubmission(event) {
+      // Prevent page reload
+      event.preventDefault();
+
+      // Get user input and validate
+      const input = document.getElementById("userWord").value.trim();
+
+      // Decision logic: check if input is valid
+      if (input.length === 0) {
+        document.getElementById("result").innerHTML = "Please enter a valid word.";
+        return;
+      }
+
+      // Create a WordAnalyzer object
+      const analyzer = new WordAnalyzer(input);
+
+      // Build output string using methods from the class
+      let message = `"${input}" has ${analyzer.countVowels()} vowel(s).<br>`;
+      message += analyzer.isPalindrome()
+        ? "It is a <span style='color:green;'>palindrome!</span>"
+        : "It is <span style='color:red;'>not a palindrome.</span>";
+
+      // Output results to the page
+      document.getElementById("result").innerHTML = message;
+
+      // Clear input field
+      document.getElementById("userWord").value = '';
+    }
+
+    // Connect form submission to handler
+    const form = document.getElementById("wordForm");
+    form.onsubmit = handleFormSubmission;
+  </script>
+</body>
+</html>

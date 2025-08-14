@@ -1,0 +1,98 @@
+<!-- Author: Michael Mosby -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Assignment Tracker</title>
+
+  <!-- Internal CSS for a simple, professional look -->
+  <style>
+    :root{
+      --ink:#0f172a; --muted:#64748b; --border:#e2e8f0; --head:#f1f5f9; --stripe:#f8fafc;
+      --brand:#2563eb;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; padding:2rem 1rem; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--ink); background:linear-gradient(135deg,#eef2ff,#f8fafc 40%,#f1f5f9);
+    }
+    .wrap{ max-width:960px; margin:0 auto; }
+    h1{ margin:.25rem 0 .5rem; color:var(--brand); font-size:1.75rem; }
+    p.lead{ margin:0 0 1rem; color:var(--muted); }
+
+    .table-card{
+      background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1.25rem 1.25rem;
+      box-shadow:0 8px 24px rgba(15,23,42,.06);
+    }
+    .table-wrap{ overflow-x:auto; }
+    table{
+      width:100%; border-collapse:collapse; border:1px solid var(--border); border-radius:10px; overflow:hidden;
+    }
+    caption{ text-align:left; padding:.6rem .75rem; font-weight:600; color:var(--muted); }
+    thead th{
+      text-align:left; background:var(--head); padding:.75rem .9rem; border-bottom:1px solid var(--border); font-size:.95rem;
+    }
+    tbody td{
+      padding:.75rem .9rem; border-bottom:1px solid var(--border); vertical-align:top;
+    }
+    tbody tr:nth-child(odd){ background:var(--stripe); }
+    .badge{
+      display:inline-block; padding:.15rem .5rem; border-radius:.4rem; font-size:.8rem; font-weight:600;
+    }
+    .prio-high{ background:#fee2e2; color:#991b1b; }
+    .prio-med{ background:#fef3c7; color:#92400e; }
+    .prio-low{ background:#dcfce7; color:#166534; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Course Assignment Tracker</h1>
+      <p class="lead">Deadlines and status for the current term.</p>
+    </header>
+
+    <section class="table-card">
+      <div class="table-wrap" role="region" aria-label="Assignments table">
+        <table>
+          <caption>Assignments, due dates, priority, and current status</caption>
+          <thead>
+            <tr>
+              <th scope="col">Assignment</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Strings &amp; Palindrome Lab</td>
+              <td>2025-08-18</td>
+              <td><span class="badge prio-high">High</span></td>
+              <td>Draft complete; refine validation messages.</td>
+            </tr>
+            <tr>
+              <td>Sound Integration Page</td>
+              <td>2025-08-20</td>
+              <td><span class="badge prio-med">Medium</span></td>
+              <td>Audio source finalized; styling polish pending.</td>
+            </tr>
+            <tr>
+              <td>Multi-Page Portfolio</td>
+              <td>2025-08-22</td>
+              <td><span class="badge prio-med">Medium</span></td>
+              <td>About &amp; Contact done; add image captions.</td>
+            </tr>
+            <tr>
+              <td>Data Structures Reflection</td>
+              <td>2025-08-25</td>
+              <td><span class="badge prio-low">Low</span></td>
+              <td>Outline ready; expand queue vs array section.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

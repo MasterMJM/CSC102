@@ -1,0 +1,167 @@
+<!-- contact.html -->
+<!-- Author: Mihcael Mosby -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title> 
+    <link rel="stylesheet" href="final.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #880e4f;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        a {
+            color: #ad1457;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+ #contact-puzzle {
+    background-color: #f0fdf4;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#puzzle-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem auto;
+    width: 100%;
+    max-width: 600px;
+    border: 2px solid #10b981;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #ecfdf5;
+    min-height: 60px;
+}
+
+.puzzle-piece {
+    width: 40px;
+    height: 40px;
+    margin: 0.2rem;
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    border-radius: 6px;
+    user-select: none;
+}
+
+#drop-zone {
+    width: 100%;
+    min-height: 60px;
+    margin-top: 1rem;
+    border: 2px dashed #10b981;
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+}
+    </style>
+</head>
+<body>
+    <h1>Contact Me</h1>
+    <p><strong>Email:</strong> <a href="mailto:youremail@example.com">mosbymichael996@gmail.com</a></p>
+    <p><strong>Phone:</strong> (812) 629-3407</p>
+    <p><strong>Location:</strong> 2627 west baseline road, Tempe, Arizona</p>
+    <a class="back-link" href="home.html">Back to Home</a>
+</body>
+<section id="contact-puzzle">
+  <h2>Complete the Puzzle to Reveal My Contact Info!</h2>
+  <p>Drag the letters into the correct order to unlock my email address.</p>
+
+  <div id="puzzle-container"></div>
+
+  <button id="reset-puzzle">Reset Puzzle</button>
+
+  <p id="puzzle-result" style="display:none; color: green; font-weight: bold;">
+    ✅ Correct! 📧 Email: mosbymichael996@gmail.com
+  </p>
+</section>
+<script>
+const email = "mosbymichael996@gmail.com";
+const puzzleContainer = document.getElementById("puzzle-container");
+const dropZone = document.createElement("div");
+dropZone.id = "drop-zone";
+puzzleContainer.appendChild(dropZone);
+const result = document.getElementById("puzzle-result");
+const resetBtn = document.getElementById("reset-puzzle");
+
+let letters = [];
+let placedLetters = [];
+
+// Function to create scrambled letters
+function createPuzzle() {
+    puzzleContainer.innerHTML = "";
+    dropZone.innerHTML = "";
+    placedLetters = [];
+    result.style.display = "none";
+
+    puzzleContainer.appendChild(dropZone);
+
+    letters = email.split("").map((letter, index) => ({letter, id: index}));
+    letters = letters.sort(() => Math.random() - 0.5);
+
+    letters.forEach(item => {
+        const span = document.createElement("div");
+        span.classList.add("puzzle-piece");
+        span.textContent = item.letter;
+        span.draggable = true;
+        span.dataset.id = item.id;
+        puzzleContainer.appendChild(span);
+    });
+}
+
+// Drag-and-drop events
+puzzleContainer.addEventListener("dragstart", e => {
+    if(e.target.classList.contains("puzzle-piece")) {
+        e.dataTransfer.setData("id", e.target.dataset.id);
+    }
+});
+
+dropZone.addEventListener("dragover", e => e.preventDefault());
+
+dropZone.addEventListener("drop", e => {
+    e.preventDefault();
+    const id = e.dataTransfer.getData("id");
+    const draggedPiece = document.querySelector(`.puzzle-piece[data-id='${id}']`);
+
+    if(draggedPiece) {
+        dropZone.appendChild(draggedPiece);
+        placedLetters.push(draggedPiece.textContent);
+
+        if(placedLetters.join("") === email) {
+            result.style.display = "block"; // show success message
+        }
+    }
+});
+
+// Reset button
+resetBtn.addEventListener("click", createPuzzle);
+
+// Initialize puzzle on page load
+createPuzzle();
+</script>
+</html>

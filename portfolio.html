@@ -1,0 +1,94 @@
+<!-- portfolio.html -->
+<!-- Author: Michael Mosby -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title> 
+    <link rel="stylesheet" href="final.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #1b5e20;
+        }
+        p {
+            font-size: 18px;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            max-width: 250px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+        .gallery-caption {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #333;
+        }
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #2e7d32;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Portfolio</h1>
+    <p>Here are some of my projects and work samples.</p>
+
+    <!-- Image gallery section with descriptions -->
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="First Use of Unreal.png" alt="Project 1">
+            <div class="gallery-caption">Project 1 – A map I created in Unreal Engine in just one week, starting with no prior experience. This project showcases my rapid learning and ability to design playable game environments from scratch.</div>
+        </div>
+<div class="gallery-item">
+    <!-- Link wraps the image -->
+    <a href="https://www.construct.net/en/free-online-games/topdown-73700/play" target="_blank" rel="noopener noreferrer">
+        <img src="Screenshot 2025-08-10 185546.png" alt="Project 2">
+    </a>
+    <div class="gallery-caption">Project 2 – A small dungeon crawler built in Construct 3. Click the image to play the game and experience the mechanics firsthand.</div>
+</div>
+        <div class="gallery-item">
+            <img src="Weather wars.jpg" alt="Project 3">
+            <div class="gallery-caption">Project 3 – A selection of cards from a small card game I helped design. I served as the lead designer in a team of five, guiding the game’s creative vision and mechanics.</div>
+        </div>
+         <div class="gallery-item">
+            <img src="Dynasties of myth.jpg" alt="Project 4">
+            <div class="gallery-caption">Project 4 – A preview of the assets for a board game I am creating in collaboration with a partner, showcasing our designs and creative process.</div>
+        </div>
+        <!-- Add more as needed -->
+    </div>
+    <div class="gallery-item">
+    <!-- Link wraps the image -->
+    <a href="https://youtu.be/5PiEH_s24vw" target="_blank" rel="noopener noreferrer">
+        <img src="Unreal arena.png" alt="Project 5">
+    </a>
+    <div class="gallery-caption">Project 5 – A free-for-all battle arena created in Unreal Engine using Lyra. Click the image to watch a video with commentary showcasing the arena and its gameplay.</div>
+</div>
+
+    <a class="back-link" href="home.html">Back to Home</a>
+</body>
+</html>

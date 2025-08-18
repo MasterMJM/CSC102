@@ -1,0 +1,101 @@
+<!-- about.html -->
+<!-- Author: Michael Mosby -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="final.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            padding: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #0d47a1;
+        }
+         #mini-game {
+    background-color: #eef2ff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#game-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin: 1rem auto;
+    border: 2px solid #2563eb;
+    border-radius: 10px;
+    background-color: #f8fafc;
+}
+
+#click-box {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #2563eb;
+    border-radius: 6px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <h1>About Me</h1>
+    <p>Hello! My name is Michael Mosby, and I am currently a student at the University of Advancing Technology, pursuing a degree in Game Design. My passion for interactive storytelling, engaging gameplay mechanics, and worldbuilding has driven me to explore all aspects of the game creation process. Over the course of my academic journey, I have contributed to various projects across different genres and platforms, often taking on the role of a creative lead. In these positions, I have guided concept development, collaborated closely with artists, programmers, and designers, and ensured that each project maintained a cohesive vision from start to finish. Beyond just the creative direction, I enjoy problem-solving and refining ideas to create experiences that are both fun and meaningful for players. Whether it’s designing unique game mechanics, developing memorable characters, or crafting immersive environments, I’m always focused on delivering something that resonates with audiences. My goal is to continue honing my skills, expand my portfolio, and one day bring my own original game concepts to life, sharing them with players around the world.</p>
+    <p><a href="home.html">Back to Home</a></p>
+</body>
+<section id="mini-game">
+  <h2>Fun Mini-Game!</h2>
+  <p>Click the moving box as many times as you can in 15 seconds!</p>
+  <div id="game-container">
+    <div id="click-box"></div>
+  </div>
+  <p>Score: <span id="score">0</span></p>
+  <button id="start-game">Start Game</button>
+</section>
+<script>
+    // Mini Game: Click the moving box
+const box = document.getElementById("click-box");
+const container = document.getElementById("game-container");
+const scoreDisplay = document.getElementById("score");
+const startButton = document.getElementById("start-game");
+
+let score = 0;
+let gameInterval;
+let gameTime = 15000; // 15 seconds
+
+function moveBox() {
+    const maxX = container.clientWidth - box.offsetWidth;
+    const maxY = container.clientHeight - box.offsetHeight;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+    box.style.left = randomX + "px";
+    box.style.top = randomY + "px";
+}
+
+box.addEventListener("click", () => {
+    score++;
+    scoreDisplay.innerText = score;
+});
+
+startButton.addEventListener("click", () => {
+    score = 0;
+    scoreDisplay.innerText = score;
+    moveBox();
+    gameInterval = setInterval(moveBox, 800); // box moves every 0.8 seconds
+    startButton.disabled = true;
+
+    setTimeout(() => {
+        clearInterval(gameInterval);
+        startButton.disabled = false;
+        alert("Time's up! Your final score is " + score);
+    }, gameTime);
+});
+</script>
+</html>
